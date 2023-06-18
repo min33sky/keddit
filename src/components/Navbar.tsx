@@ -18,7 +18,7 @@ export default function Navbar() {
         {/* SearchBar */}
 
         <Link href="/sign-in" className={buttonVariants()}>
-          Sign In
+          회원가입
         </Link>
       </div>
     </div>
