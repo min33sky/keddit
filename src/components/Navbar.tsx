@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { Icons } from './Icons';
+import { buttonVariants } from './ui/Button';
 
 export default function Navbar() {
   return (
@@ -12,6 +13,12 @@ export default function Navbar() {
           <p className="hidden text-zinc-700 text-sm font-medium md:block">
             Keddit
           </p>
+        </Link>
+
+        {/* SearchBar */}
+
+        <Link href="/sign-in" className={buttonVariants()}>
+          Sign In
         </Link>
       </div>
     </div>
