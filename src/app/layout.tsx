@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import { cn } from '@/lib/utils';
+import { Toaster } from 'react-hot-toast';
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({
         <div className={cn('container max-w-7xl mx-auto h-full pt-12')}>
           {children}
         </div>
+        <Toaster />
       </body>
     </html>
   );
