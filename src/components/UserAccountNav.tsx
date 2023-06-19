@@ -55,7 +55,7 @@ export default function UserAccountNav({ user }: Props) {
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>
-          <Link href="/settins">Settings</Link>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />

@@ -1,3 +1,4 @@
+import SubscribeLeaveToggle from '@/components/SubscribeLeaveToggle';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { format } from 'date-fns';
@@ -85,6 +86,17 @@ export default async function Layout({
                 <div className="flex justify-between gap-x-4 py-3">
                   <dt className="text-gray-500">You created this community</dt>
                 </div>
+              ) : null}
+
+              {/* 구독, 구독 해지 버튼 */}
+              {subreddit.creatorId !== session?.user.id ? (
+                <>
+                  <SubscribeLeaveToggle
+                    isSubscribed={isSubscribed}
+                    subredditId={subreddit.id}
+                    subredditName={subreddit.name}
+                  />
+                </>
               ) : null}
             </dl>
           </div>
