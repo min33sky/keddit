@@ -7,6 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { CreateSubredditPayload } from '@/lib/validators/subreddit';
 import axios, { AxiosError } from 'axios';
 import { Button } from '@/components/ui/Button';
+import { toast } from 'react-hot-toast';
 
 export default function CreatePage() {
   const [input, setInput] = useState('');
@@ -24,23 +25,21 @@ export default function CreatePage() {
     onError: (err) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
-          alert('이미 존재하는 커뮤니티입니다.');
+          toast.error('이미 존재하는 커뮤니티 이름입니다.');
         }
 
         if (err.response?.status === 422) {
-          alert('커뮤니티 이름은 3글자 이상 21글자 이하이어야 합니다.');
+          toast.error('커뮤니티 이름은 3글자 이상 21글자 이하여야 합니다.');
         }
 
         if (err.response?.status === 401) {
-          alert('로그인이 필요합니다.');
+          toast.error('로그인이 필요합니다.');
         }
       } else {
-        alert('서버 에러');
+        toast.error('서버에 문제가 발생했습니다.');
       }
     },
     onSuccess: (data) => {
-      console.log('성공: ', data);
-
       router.push(`/r/${data}`);
     },
   });
@@ -55,9 +54,9 @@ export default function CreatePage() {
         <hr className="bg-zinc-500 h-px" />
 
         <div>
-          <p className="text-lg font-medium">Name</p>
+          <p className="text-lg font-medium">이름</p>
           <p className="text-start pb-2">
-            Community names including capitalization cannot be changed.
+            대소문자를 포함한 커뮤니티 이름은 변경할 수 없습니다.
           </p>
 
           <div className="relative">
