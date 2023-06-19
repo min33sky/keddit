@@ -3,6 +3,7 @@ import React from 'react';
 import { Icons } from './Icons';
 import { buttonVariants } from './ui/Button';
 import { getAuthSession } from '@/lib/auth';
+import UserAccountNav from './UserAccountNav';
 
 export default async function Navbar() {
   const session = await getAuthSession();
@@ -20,7 +21,7 @@ export default async function Navbar() {
         {/* SearchBar */}
 
         {session?.user ? (
-          <p>로그인 상태</p>
+          <UserAccountNav user={session.user} />
         ) : (
           <Link href="/sign-in" className={buttonVariants()}>
             회원가입
