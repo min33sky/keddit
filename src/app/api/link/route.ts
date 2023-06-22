@@ -35,9 +35,8 @@ export async function GET(req: Request) {
   );
   const imageUrl = imageMatch ? imageMatch[1] : '';
 
-  // Return the data in the format required by the editor tool
-  return new Response(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       success: 1,
       meta: {
         title,
@@ -46,6 +45,9 @@ export async function GET(req: Request) {
           url: imageUrl,
         },
       },
-    }),
+    },
+    {
+      status: 200,
+    },
   );
 }
