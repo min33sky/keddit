@@ -1,4 +1,5 @@
 import MiniCreatePost from '@/components/MiniCreatePost';
+import PostFeed from '@/components/PostFeed';
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
@@ -40,10 +41,11 @@ export default async function DetailPage({ params }: Props) {
 
   return (
     <>
-      <h1 className="font-bold text-3xl md:text-4xl h-14">
+      <h1 className="h-14 text-3xl font-bold md:text-4xl">
         r/{subreddit.name}
       </h1>
       <MiniCreatePost session={session} />
+      <PostFeed />
     </>
   );
 }
