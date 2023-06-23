@@ -68,6 +68,8 @@ export default function PostFeed({
                 subredditName={post.subreddit.name}
                 post={post}
                 commentAmt={post.comments.length}
+                votesAmt={votesAmt}
+                currentVote={currentVote}
               />
             </li>
           );
@@ -78,6 +80,8 @@ export default function PostFeed({
               subredditName={post.subreddit.name}
               post={post}
               commentAmt={post.comments.length}
+              votesAmt={votesAmt}
+              currentVote={currentVote}
             />
           );
         }
