@@ -64,7 +64,11 @@ export default function PostFeed({
           //? Add a ref to the last post in the list
           return (
             <li key={post.id} ref={ref}>
-              <Post subredditName={post.subreddit.name} post={post} />
+              <Post
+                subredditName={post.subreddit.name}
+                post={post}
+                commentAmt={post.comments.length}
+              />
             </li>
           );
         } else {
@@ -73,6 +77,7 @@ export default function PostFeed({
               key={post.id}
               subredditName={post.subreddit.name}
               post={post}
+              commentAmt={post.comments.length}
             />
           );
         }
