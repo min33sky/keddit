@@ -6,7 +6,8 @@ import { ArrowBigDown, ArrowBigUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 import { PostVoteRequest } from "@/lib/validators/vote";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { toast } from "react-hot-toast";
 
 interface PostVoteClientProps {
   postId: string;
@@ -35,6 +36,36 @@ export default function PostVoteClient({
       };
 
       await axios.patch("/api/subreddit/post/vote", payload);
+    },
+    onError: (err, voteType) => {
+      if (voteType === "UP") setVotesAmt((prev) => prev - 1);
+      else setVotesAmt((prev) => prev + 1);
+
+      //   reset current vote
+      setCurrentVote(prevVote);
+
+      if (err instanceof AxiosError) {
+        if (err.response?.status === 401) {
+          return toast.error("You must be logged in to vote");
+        }
+      }
+
+      toast.error("Your vote was not registered. Please try again");
+    },
+
+    onMutate: (type) => {
+      if (currentVote === type) {
+        //   User is voting the same way again, so remove their vote
+        setCurrentVote(undefined);
+
+        if (type === "UP") setVotesAmt((prev) => prev - 1);
+        else setVotesAmt((prev) => prev + 1);
+      } else {
+        //   User is voting in the opposite direction, so subtract 2
+        setCurrentVote(type);
+        if (type === "UP") setVotesAmt((prev) => prev + (currentVote ? 2 : 1));
+        else setVotesAmt((prev) => prev - (currentVote ? 2 : 1));
+      }
     },
   });
 
