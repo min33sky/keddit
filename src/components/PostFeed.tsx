@@ -53,7 +53,7 @@ export default function PostFeed({
         fetchNextPage(); // Load more posts when the last post comes into view
       }
     }
-  }, [entry, fetchNextPage]);
+  }, [entry, fetchNextPage, hasNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
