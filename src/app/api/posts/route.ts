@@ -1,5 +1,6 @@
 import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
 export async function GET(req: Request) {
@@ -7,6 +8,7 @@ export async function GET(req: Request) {
 
   const session = await getAuthSession();
 
+  // 구독한 서브레딧 ID 목록
   let followedCommunitiesIds: string[] = [];
 
   if (session) {
@@ -68,8 +70,17 @@ export async function GET(req: Request) {
       where: whereClause,
     });
 
-    return new Response(JSON.stringify(posts));
+    return NextResponse.json(posts);
   } catch (error) {
-    return new Response('Could not fetch posts', { status: 500 });
+    console.log('### Error while fetching posts: ', error);
+
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
+    return NextResponse.json(
+      { error: 'Could not fetch posts. Server Error' },
+      { status: 500 },
+    );
   }
 }

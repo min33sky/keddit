@@ -6,8 +6,9 @@ import { useIntersection } from '@mantine/hooks';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Post from './Post';
+import { Loader2 } from 'lucide-react';
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
@@ -26,22 +27,33 @@ export default function PostFeed({
 
   const { data: session } = useSession();
 
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: ['infinite-query'],
-    queryFn: async ({ pageParam = 1 }) => {
-      const query =
-        `/api/posts?limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}` +
-        `${!!subredditName ? `&subreddit=${subredditName}` : ''}`;
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: ['infinite-query'],
+      queryFn: async ({ pageParam = 1 }) => {
+        const query =
+          `/api/posts?limit=${INFINITE_SCROLL_PAGINATION_RESULTS}&page=${pageParam}` +
+          `${!!subredditName ? `&subredditName=${subredditName}` : ''}`;
 
-      const { data } = await axios.get<ExtendedPost[]>(query);
-      return data;
-    },
-    getNextPageParam: (_, pages) => {},
-    initialData: {
-      pages: [initialPosts],
-      pageParams: [1],
-    },
-  });
+        const { data } = await axios.get<ExtendedPost[]>(query);
+        return data;
+      },
+      getNextPageParam: (_, pages) => {
+        return pages.length + 1;
+      },
+      initialData: {
+        pages: [initialPosts],
+        pageParams: [1],
+      },
+    });
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      if (hasNextPage) {
+        fetchNextPage(); // Load more posts when the last post comes into view
+      }
+    }
+  }, [entry, fetchNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
@@ -84,6 +96,12 @@ export default function PostFeed({
           );
         }
       })}
+
+      {isFetchingNextPage && (
+        <li className="flex justify-center">
+          <Loader2 className="h-6 w-6 animate-spin text-zinc-500" />
+        </li>
+      )}
     </ul>
   );
 }
