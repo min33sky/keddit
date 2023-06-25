@@ -6,7 +6,7 @@ import { CachedPost } from '@/types/redis';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 
-const CACHE_AFTER_UPVOTES = 1;
+const CACHE_AFTER_UPVOTES = 10;
 
 export async function PATCH(req: Request) {
   try {

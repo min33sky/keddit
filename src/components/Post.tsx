@@ -6,6 +6,7 @@ import { MessageSquare } from 'lucide-react';
 import React, { useRef } from 'react';
 import EditorOutput from './EditorOutput';
 import PostVoteClient from './post-vote/PostVoteClient';
+import formatDateString from '@/lib/formatDateString';
 
 type PartialVote = Pick<Vote, 'type'>;
 
@@ -54,8 +55,7 @@ export default function Post({
               </>
             ) : null}
             <span>Posted by u/{post.author.name}</span>{' '}
-            {/* TODO: ago 형식으로 교체해야함 */}
-            {post.createdAt.toLocaleString()}
+            {formatDateString(post.createdAt)}
           </div>
 
           <a href={`/r/${subredditName}/post/${post.id}`}>
