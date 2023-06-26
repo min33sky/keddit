@@ -2,6 +2,7 @@ import { getAuthSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import React from 'react';
 import PostComment from './PostComment';
+import CreatetComment from './CreateComment';
 
 interface CommentsSectionProps {
   postId: string;
@@ -33,7 +34,7 @@ export default async function CommentsSection({
     <div className="flex flex-col gap-y-4 mt-4">
       <hr className="w-full h-px my-6" />
 
-      {/* TODO: create comment */}
+      <CreatetComment postId={postId} />
 
       <div className="flex flex-col gap-y-6 mt-4">
         {comments

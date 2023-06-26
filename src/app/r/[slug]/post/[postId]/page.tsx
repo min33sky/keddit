@@ -76,15 +76,17 @@ export default async function PostDetail({
           </h1>
 
           <EditorOutput content={post?.content ?? cachedPost.content} />
-        </div>
 
-        {/* 댓글 */}
-        <Suspense
-          fallback={<Loader2 className="h-5 w-5 animate-spin text-zinc-500" />}
-        >
-          {/* @ts-expect-error server component */}
-          <CommentsSection postId={post?.id ?? cachedPost.id} />
-        </Suspense>
+          {/* 댓글 */}
+          <Suspense
+            fallback={
+              <Loader2 className="h-5 w-5 animate-spin text-zinc-500" />
+            }
+          >
+            {/* @ts-expect-error server component */}
+            <CommentsSection postId={post?.id ?? cachedPost.id} />
+          </Suspense>
+        </div>
       </div>
     </div>
   );
