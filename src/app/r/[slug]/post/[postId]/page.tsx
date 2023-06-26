@@ -1,4 +1,5 @@
 import PostVoteServer from '@/app/api/subreddit/post/vote/PostVoteServer';
+import CommentsSection from '@/components/CommentsSection';
 import EditorOutput from '@/components/EditorOutput';
 import PostVoteShell from '@/components/PostVoteShell';
 import { db } from '@/lib/db';
@@ -6,6 +7,7 @@ import formatDateString from '@/lib/formatDateString';
 import { redis } from '@/lib/redis';
 import { CachedPost } from '@/types/redis';
 import { Post, User, Vote } from '@prisma/client';
+import { Loader2 } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 
@@ -46,6 +48,7 @@ export default async function PostDetail({
     <div>
       <div className="h-full flex flex-col sm:flex-row items-center sm:items-start justify-between">
         <Suspense fallback={<PostVoteShell />}>
+          {/* TODO: DB를 다시 불러오는거 비효율적이다  */}
           {/* @ts-expect-error server component */}
           <PostVoteServer
             postId={post?.id ?? cachedPost.id}
@@ -76,6 +79,12 @@ export default async function PostDetail({
         </div>
 
         {/* 댓글 */}
+        <Suspense
+          fallback={<Loader2 className="h-5 w-5 animate-spin text-zinc-500" />}
+        >
+          {/* @ts-expect-error server component */}
+          <CommentsSection postId={post?.id ?? cachedPost.id} />
+        </Suspense>
       </div>
     </div>
   );
