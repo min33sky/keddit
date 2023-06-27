@@ -2,13 +2,13 @@
 
 import { INFINITE_SCROLL_PAGINATION_RESULTS } from '@/config';
 import type { ExtendedPost } from '@/types/db';
-import { useIntersection } from '@mantine/hooks';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useRef } from 'react';
 import Post from './Post';
 import { Loader2 } from 'lucide-react';
+import useIntersection from '@/hooks/useIntersection';
 
 interface PostFeedProps {
   initialPosts: ExtendedPost[];
@@ -53,7 +53,7 @@ export default function PostFeed({
         fetchNextPage(); // Load more posts when the last post comes into view
       }
     }
-  }, [entry, fetchNextPage, hasNextPage]);
+  }, [entry?.isIntersecting, fetchNextPage, hasNextPage]);
 
   const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
 
