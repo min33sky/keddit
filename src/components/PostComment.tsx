@@ -38,6 +38,8 @@ export default function PostComment({ comment }: PostCommentProps) {
       </div>
 
       <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
+
+      <div className="flex gap-2 items-center">{/* CommentVotes */}</div>
     </div>
   );
 }

@@ -54,7 +54,7 @@ export default function CreatetComment({ postId, replyToId }: Props) {
 
   return (
     <div className="grid w-full gap-1.5">
-      <Label htmlFor="comment">Your Comment</Label>
+      <Label htmlFor="comment">댓글쓰기</Label>
 
       <div className="mt-2">
         <Textarea
@@ -62,7 +62,7 @@ export default function CreatetComment({ postId, replyToId }: Props) {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           rows={1}
-          placeholder="What are your thoughts?"
+          placeholder="당신의 생각을 적어보세요."
         />
 
         <div className="mt-2 flex justify-end">
