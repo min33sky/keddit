@@ -4,6 +4,7 @@ import React, {
   startTransition,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 import {
@@ -19,6 +20,7 @@ import axios from 'axios';
 import { Prisma, Subreddit } from '@prisma/client';
 import { Users } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
+import { useOnClickOutside } from '@/hooks/use-on-click-outside';
 import debounce from 'lodash.debounce';
 
 type SearchResponse = (Subreddit & {
@@ -28,7 +30,12 @@ type SearchResponse = (Subreddit & {
 export default function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
+  const commandRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState('');
+
+  useOnClickOutside(commandRef, () => {
+    setInput('');
+  });
 
   const request = debounce(async () => {
     refetch();
@@ -62,7 +69,10 @@ export default function SearchBar() {
   });
 
   return (
-    <Command className="relative rounded-lg border max-w-lg z-50 overflow-visible">
+    <Command
+      ref={commandRef}
+      className="relative rounded-lg border max-w-lg z-50 overflow-visible"
+    >
       <CommandInput
         value={input}
         onValueChange={(text) => {
