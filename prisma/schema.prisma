@@ -16,6 +16,11 @@ enum VoteType {
   DOWN
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model Account {
   id                String  @id @default(cuid())
   type              String
@@ -47,12 +52,12 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?        @unique
   emailVerified DateTime?
-  username      String?   @unique
-
+  username      String?        @unique
+  role          Role           @default(USER)
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -92,16 +97,15 @@ model Subscription {
 model Post {
   id          String    @id @default(cuid())
   title       String
-  content     Json?
+  content     Json? // rich editor로 사용하는  @editorjs 모듈이 json으로 결과를 반환하기 때문에
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
   subreddit   Subreddit @relation(fields: [subredditId], references: [id])
   subredditId String
-
-  comments Comment[]
-  votes    Vote[]
+  comments    Comment[]
+  votes       Vote[]
 
   @@index([authorId])
   @@index([subredditId])
@@ -118,8 +122,9 @@ model Comment {
   postId    String
   votes     CommentVote[]
 
-  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  replyToId String?
+  // 대댓글 관련 속성
+  replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction) // 부모 댓글이 지워저도 영향을 주지않는다.
+  replyToId String? // 부모 댓글 아이디
   replies   Comment[] @relation("ReplyTo")
 
   @@index([authorId])
