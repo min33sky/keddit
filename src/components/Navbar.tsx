@@ -8,13 +8,14 @@ import SearchBar from './SearchBar';
 
 export default async function Navbar() {
   const session = await getAuthSession();
+
   return (
     <div className="fixed top-0 inset-x-0 h-fit bg-zinc-100 border-b border-zinc-300 z-10 py-2">
       <div className="container max-w-7xl h-full mx-auto flex items-center justify-between gap-2">
         {/* Logo */}
         <Link href="/" className="flex gap-2 items-center">
           <Icons.logo className="h-8 w-8 sm:h-6 sm:w-6" />
-          <p className="hidden text-zinc-700 text-sm font-medium md:block">
+          <p className="hidden text-zinc-700 text-sm font-bold md:block">
             Keddit
           </p>
         </Link>
@@ -24,9 +25,14 @@ export default async function Navbar() {
         {session?.user ? (
           <UserAccountNav user={session.user} />
         ) : (
-          <Link href="/sign-in" className={buttonVariants()}>
-            회원가입
-          </Link>
+          <div className="flex space-x-2 shrink-0">
+            <Link href="/sign-in" className={buttonVariants()}>
+              로그인
+            </Link>
+            <Link href="/sign-up" className={buttonVariants()}>
+              회원가입
+            </Link>
+          </div>
         )}
       </div>
     </div>

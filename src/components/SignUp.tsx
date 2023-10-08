@@ -14,7 +14,9 @@ export default function SignUp() {
           개인정보 보호정책에 동의하게 됩니다.
         </p>
       </div>
+
       <UserAuthForm />
+
       <p className="px-8 text-center text-sm text-muted-foreground">
         이미 계정이 있으신가요?{' '}
         <Link

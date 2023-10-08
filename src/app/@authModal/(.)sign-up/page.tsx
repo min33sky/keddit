@@ -3,7 +3,7 @@ import ModalWrapper from '@/components/ModalWrapper';
 import SignUp from '@/components/SignUp';
 import React from 'react';
 
-export default function SignInModal() {
+export default function SignUpModal() {
   return (
     <ModalWrapper>
       <div className="container flex items-center h-full max-w-lg mx-auto">
