@@ -86,7 +86,7 @@ export default function PostVoteClient({
         />
       </Button>
 
-      <p className="py-2 text-center text-sm font-medium text-zinc-900">
+      <p className="py-2 text-center text-sm font-medium text-zinc-900 dark:text-zinc-300">
         {votesAmt}
       </p>
 

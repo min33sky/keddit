@@ -6,6 +6,7 @@ import React, { useRef } from 'react';
 import EditorOutput from './EditorOutput';
 import PostVoteClient from './post-vote/PostVoteClient';
 import formatDateString from '@/lib/formatDateString';
+import Link from 'next/link';
 
 type PartialVote = Pick<Vote, 'type'>;
 
@@ -32,7 +33,6 @@ export default function Post({
   return (
     <div className="rounded-md bg-white dark:bg-zinc-900 shadow">
       <div className="flex justify-between px-6 py-4">
-        {/* TODO: PostVotes */}
         <PostVoteClient
           postId={post.id}
           initialVote={currentVote?.type}
@@ -44,7 +44,7 @@ export default function Post({
             {subredditName ? (
               <>
                 <a
-                  className="text-sm text-zinc-900 underline underline-offset-2"
+                  className="text-sm underline underline-offset-2"
                   href={`/r/${subredditName}`}
                 >
                   r/{subredditName}
@@ -57,11 +57,11 @@ export default function Post({
             {formatDateString(post.createdAt)}
           </div>
 
-          <a href={`/r/${subredditName}/post/${post.id}`}>
-            <h1 className="py-2 text-lg font-semibold leading-6 text-gray-900">
+          <Link href={`/r/${subredditName}/post/${post.id}`}>
+            <h1 className="py-2 text-lg font-semibold leading-6">
               {post.title}
             </h1>
-          </a>
+          </Link>
 
           <div
             ref={paragraphRef}
