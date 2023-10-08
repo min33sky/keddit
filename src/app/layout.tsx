@@ -19,12 +19,8 @@ export default function RootLayout({
   authModal: React.ReactNode;
 }) {
   return (
-    <html
-      lang="ko"
-      className={cn('bg-white text-slate-900 antialiased')}
-      suppressHydrationWarning
-    >
-      <body className={cn('min-h-screen pt-12 bg-slate-50 antialiased')}>
+    <html lang="ko" suppressHydrationWarning>
+      <body className={cn('min-h-screen pt-12 antialiased')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

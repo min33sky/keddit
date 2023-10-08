@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useRef } from 'react';
 import Post from './Post';
-import { Loader2 } from 'lucide-react';
+import { Loader2Icon } from 'lucide-react';
 import useIntersection from '@/hooks/useIntersection';
 
 interface PostFeedProps {
@@ -99,7 +99,7 @@ export default function PostFeed({
 
       {isFetchingNextPage && (
         <li className="flex justify-center">
-          <Loader2 className="h-6 w-6 animate-spin text-zinc-500" />
+          <Loader2Icon className="h-6 w-6 animate-spin text-zinc-500" />
         </li>
       )}
     </ul>

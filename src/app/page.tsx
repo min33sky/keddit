@@ -1,26 +1,32 @@
 import CustomFeed from '@/components/feeds/CustomFeed';
 import GeneralFeed from '@/components/feeds/GeneralFeed';
-import { buttonVariants } from '@/components/ui/Button';
+import { Button, buttonVariants } from '@/components/ui/Button';
 import { getAuthSession } from '@/lib/auth';
-import { HomeIcon } from 'lucide-react';
+import { HomeIcon, NewspaperIcon } from 'lucide-react';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 export const fetchCache = 'force-no-store';
+export const revalidate = 0;
 
 export default async function Home() {
   const session = await getAuthSession();
 
+  console.log('### session : ', session);
+
   return (
     <>
-      <h1 className="font-bold text-3xl md:text-4xl">Your Feed</h1>
+      <h1 className="flex items-center font-bold text-3xl md:text-2xl">
+        <NewspaperIcon className="w-6 h-6 mr-2" />
+        {session?.user ? session.user.username : '당신'}의 Feed
+      </h1>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
-        {/* @ts-expect-error server component */}
         {session ? <CustomFeed /> : <GeneralFeed />}
 
         {/* Subreddit info */}
         <div className="md:sticky md:top-10 overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
-          <div className="bg-emerald-100 px-6 py-4">
+          <div className="bg-emerald-100 dark:bg-background px-6 py-4">
             <p className="font-semibold py-3 flex items-center gap-1.5">
               <HomeIcon className="h-4 w-4 text-zinc-700" />
               Home

@@ -1,6 +1,5 @@
 'use client';
 
-import { formatTimeToNow } from '@/lib/utils';
 import { Post, User, Vote } from '@prisma/client';
 import { MessageSquare } from 'lucide-react';
 import React, { useRef } from 'react';
@@ -31,7 +30,7 @@ export default function Post({
   const paragraphRef = useRef<HTMLParagraphElement>(null);
 
   return (
-    <div className="rounded-md bg-white shadow">
+    <div className="rounded-md bg-white dark:bg-zinc-900 shadow">
       <div className="flex justify-between px-6 py-4">
         {/* TODO: PostVotes */}
         <PostVoteClient
@@ -74,7 +73,7 @@ export default function Post({
               //? 그라데이션 처리
               paragraphRef.current?.clientHeight === 160 ? (
                 <div
-                  className={`absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent`}
+                  className={`absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-white to-transparent dark:from-zinc-900`}
                 />
               ) : null
             }
@@ -82,13 +81,13 @@ export default function Post({
         </div>
       </div>
 
-      <div className="z-20 bg-gray-50 p-4 text-sm sm:px-6">
+      <div className="z-20 bg-gray-50 dark:bg-zinc-800 p-4 text-sm sm:px-6">
         <a
           href={`/r/${subredditName}/post/${post.id}`}
           className="flex w-fit items-center gap-2"
         >
           <MessageSquare className="h-4 w-4" />
-          {commentAmt || 0} Comments
+          {commentAmt || 0}개의 댓글
         </a>
       </div>
     </div>

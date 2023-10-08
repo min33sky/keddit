@@ -45,17 +45,17 @@ export default function CreatePage() {
   });
 
   return (
-    <div className="container flex items-center h-full max-w-3xl mx-auto">
-      <div className="relative bg-white w-full h-fit p-4 rounded-lg space-y-6">
+    <div className="container flex items-center h-full max-w-3xl mx-auto ">
+      <div className="relative w-full h-fit p-4 rounded-lg space-y-6">
         <div className="flex justify-between items-center">
           <h1 className="text-left font-semibold">커뮤니티 만들기</h1>
         </div>
 
         <hr className="bg-zinc-500 h-px" />
 
-        <div>
+        <div className="space-y-4">
           <p className="text-lg font-medium">이름</p>
-          <p className="text-start pb-2">
+          <p className="text-start text-sm pb-2">
             대소문자를 포함한 커뮤니티 이름은 변경할 수 없습니다.
           </p>
 
