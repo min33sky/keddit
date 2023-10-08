@@ -1,9 +1,10 @@
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/navbar';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import React from 'react';
 import ReactQueryProvider from '@/components/providers/react-query-provider';
 import { Toaster } from 'sonner';
+import { ThemeProvider } from '@/components/providers/theme-provider';
 
 export const metadata = {
   title: 'K-reddit',
@@ -18,19 +19,30 @@ export default function RootLayout({
   authModal: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={cn('bg-white text-slate-900 antialiased')}>
+    <html
+      lang="ko"
+      className={cn('bg-white text-slate-900 antialiased')}
+      suppressHydrationWarning
+    >
       <body className={cn('min-h-screen pt-12 bg-slate-50 antialiased')}>
-        <ReactQueryProvider>
-          {/* @ts-expect-error server component */}
-          <Navbar />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ReactQueryProvider>
+            <Navbar />
 
-          {authModal}
+            {authModal}
 
-          <div className={cn('container max-w-7xl mx-auto h-full pt-12')}>
-            {children}
-          </div>
-          <Toaster richColors />
-        </ReactQueryProvider>
+            <div className={cn('container max-w-7xl mx-auto h-full pt-12')}>
+              {children}
+            </div>
+
+            <Toaster richColors />
+          </ReactQueryProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
