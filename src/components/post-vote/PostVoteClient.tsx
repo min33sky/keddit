@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 import { useMutation } from '@tanstack/react-query';
 import { PostVoteRequest } from '@/lib/validators/vote';
 import axios, { AxiosError } from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 interface PostVoteClientProps {
   postId: string;

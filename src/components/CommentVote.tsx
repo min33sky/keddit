@@ -7,7 +7,7 @@ import { Button } from './ui/Button';
 import { useMutation } from '@tanstack/react-query';
 import { CommentVoteRequest } from '@/lib/validators/vote';
 import axios, { AxiosError } from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 type PartialVote = Pick<CommentVote, 'type'>;
 

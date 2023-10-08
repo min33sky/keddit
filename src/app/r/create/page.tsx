@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import { CreateSubredditPayload } from '@/lib/validators/subreddit';
 import axios, { AxiosError } from 'axios';
 import { Button } from '@/components/ui/Button';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 export default function CreatePage() {
   const [input, setInput] = useState('');

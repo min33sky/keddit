@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Button } from './ui/Button';
 import { signIn } from 'next-auth/react';
 import { Icons } from './Icons';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 

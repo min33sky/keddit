@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { CommentRequest } from '@/lib/validators/comment';
 import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 interface Props {
   postId: string;

@@ -6,7 +6,7 @@ import React, { startTransition } from 'react';
 import { Button } from './ui/Button';
 import { SubscribeToSubredditPayload } from '@/lib/validators/subreddit';
 import axios, { AxiosError } from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 interface Props {
   isSubscribed: boolean;

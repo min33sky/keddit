@@ -14,7 +14,7 @@ import { useOnClickOutside } from '@/hooks/use-on-click-outside';
 import { useMutation } from '@tanstack/react-query';
 import { CommentRequest } from '@/lib/validators/comment';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 import { Textarea } from './ui/Textarea';
 
 type ExtendedComment = Comment & {

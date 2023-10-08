@@ -12,7 +12,7 @@ import '@/styles/editor.css';
 import { usePathname, useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 type FormData = z.infer<typeof PostValidator>;
