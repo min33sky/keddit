@@ -16,28 +16,29 @@ export default async function Home() {
 
   return (
     <>
-      <h1 className="flex items-center font-bold text-3xl md:text-2xl">
-        <NewspaperIcon className="w-6 h-6 mr-2" />
-        {session?.user ? session.user.username : '당신'}의 Feed
+      <h1 className="flex items-center font-bold text-2xl md:text-xl">
+        <NewspaperIcon className="w-5 h-5 mr-2" />
+        {session?.user ? session.user.username : ''} Feeds
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-y-4 md:gap-x-4 py-6">
         {session ? <CustomFeed /> : <GeneralFeed />}
 
         {/* Subreddit info */}
-        <div className="md:sticky md:top-10 overflow-hidden h-fit rounded-lg border border-gray-200 order-first md:order-last">
-          <div className="bg-emerald-100 dark:bg-background px-6 py-4">
-            <p className="font-semibold py-3 flex items-center gap-1.5">
-              <HomeIcon className="h-4 w-4 text-zinc-700" />
-              Home
+        <div
+          className="md:sticky md:top-10 overflow-hidden h-fit rounded-lg border border-gray-200
+          order-first md:order-last dark:border-slate-700"
+        >
+          <div className="bg-emerald-100 dark:bg-slate-800 px-6 py-3">
+            <p className="font-semibold py-2 flex items-center gap-1.5">
+              <HomeIcon className="h-4 w-4" />홈
             </p>
           </div>
 
-          <div className="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+          <div className="-my-3 px-6 py-4 text-sm leading-6 dark:bg-zinc-900">
             <div className="flex justify-between gap-x-4 py-3">
-              <p className="text-zinc-500">
-                Your personal Kreddit homepage. Come here to check in with your
-                favorite communities.
+              <p className="text-zinc-600 dark:text-slate-400">
+                당신이 좋아하는 주제로 커뮤니티를 만들어보세요.
               </p>
             </div>
 

@@ -48,7 +48,7 @@ export default function CreatePage() {
     <div className="container flex items-center h-full max-w-3xl mx-auto ">
       <div className="relative w-full h-fit p-4 rounded-lg space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-left font-semibold">커뮤니티 만들기</h1>
+          <h1 className="text-left font-semibold text-xl">커뮤니티 만들기</h1>
         </div>
 
         <hr className="bg-zinc-500 h-px" />
