@@ -39,12 +39,12 @@ export async function POST(req: Request) {
     // 서브레딧 생성
     const subreddit = await db.subreddit.create({
       data: {
-        name,
+        name: name.toLowerCase(),
         creatorId: session.user.id,
       },
     });
 
-    // 서브레딧 생성자를 구독자로 추가
+    //? 해당 서브레딧 생성자를 구독자로 추가
     await db.subscription.create({
       data: {
         userId: session.user.id,
@@ -64,5 +64,14 @@ export async function POST(req: Request) {
         },
       );
     }
+
+    return NextResponse.json(
+      {
+        error: 'Something went wrong',
+      },
+      {
+        status: 500,
+      },
+    );
   }
 }

@@ -4,9 +4,9 @@ import type { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import UserAvatar from './UserAvatar';
-import { Input } from './ui/Input';
 import { Button } from './ui/Button';
 import { Image as ImageIcon, Link2 } from 'lucide-react';
+import { Input } from './ui/input';
 
 interface Props {
   session: Session | null;

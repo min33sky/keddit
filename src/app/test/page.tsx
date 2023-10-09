@@ -23,6 +23,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 
 export default function CreatePage() {
+  // const [input, setInput] = useState('');
   const router = useRouter();
   const form = useForm<CreateSubredditPayload>({
     resolver: zodResolver(SubredditValidator),
@@ -54,13 +55,13 @@ export default function CreatePage() {
       }
     },
     onSuccess: (data) => {
-      toast.success('커뮤니티 생성 성공! 잠시 후 이동합니다.');
       router.push(`/r/${data}`);
     },
   });
 
   const onSubmit = async (data: CreateSubredditPayload) => {
-    createCommunity(data);
+    console.log('data: ', data);
+    // createCommunity(data);
   };
 
   return (
@@ -72,52 +73,59 @@ export default function CreatePage() {
 
         <hr className="bg-zinc-500 h-px" />
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-lg font-medium">이름</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400">
-                        r/
-                      </p>
-                      <Input placeholder="korea" className="pl-6" {...field} />
-                    </div>
-                  </FormControl>
-                  <FormDescription className="text-sm pt-2 space-y-1">
-                    <span className="block">
-                      대소문자 구별 없이 이름을 작성하세요.
-                    </span>
-                    <span className="block">
-                      이름은 나중에 변경할 수 없습니다.
-                    </span>
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-end gap-4">
-              <Button
-                type="button"
-                variant={'subtle'}
-                onClick={() => router.back()}
-              >
-                취소
-              </Button>
-              <Button
-                type="submit"
-                isLoading={isLoading}
-                disabled={form.watch('name').trim().length === 0 || isLoading}
-              >
-                생성
-              </Button>
-            </div>
-          </form>
-        </Form>
+        <div className="space-y-4">
+          {/* <p className="text-lg font-medium">이름</p> */}
+          {/* <p className="text-start text-sm pb-2"> */}
+          {/* 대소문자를 포함한 커뮤니티 이름은 변경할 수 없습니다. */}
+          {/* </p> */}
+
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>이름</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <p className="absolute text-sm left-0 w-8 inset-y-0 grid place-items-center text-zinc-400">
+                          r/
+                        </p>
+                        <Input
+                          placeholder="korea"
+                          className="pl-6"
+                          {...field}
+                        />
+                      </div>
+                      {/* <Input placeholder="korea" {...field} /> */}
+                    </FormControl>
+                    <FormDescription>
+                      대소문자를 포함한 커뮤니티 이름은 변경할 수 없습니다.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex justify-end gap-4">
+                <Button
+                  type="button"
+                  variant={'subtle'}
+                  onClick={() => router.back()}
+                >
+                  취소
+                </Button>
+                <Button
+                  type="submit"
+                  isLoading={isLoading}
+                  // disabled={input.trim().length === 0}
+                >
+                  생성
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </div>
       </div>
     </div>
   );
