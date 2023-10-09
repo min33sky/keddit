@@ -20,8 +20,8 @@ import {
   CardTitle,
 } from './ui/Card';
 import { Label } from './ui/Label';
-import { Input } from './ui/Input';
 import { Button } from './ui/Button';
+import { Input } from './ui/input';
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, 'id' | 'username'>;

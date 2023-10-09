@@ -1,8 +1,13 @@
-import Editor from '@/components/Editor';
+// import Editor from '@/components/Editor';
 import { Button } from '@/components/ui/Button';
 import { db } from '@/lib/db';
 import { notFound } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const Editor = dynamic(() => import('@/components/Editor'), {
+  ssr: false,
+});
 
 interface Props {
   params: {
