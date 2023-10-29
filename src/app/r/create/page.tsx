@@ -7,7 +7,7 @@ import {
   SubredditValidator,
 } from '@/lib/validators/subreddit';
 import axios, { AxiosError } from 'axios';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import {
   Form,

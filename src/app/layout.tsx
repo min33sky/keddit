@@ -26,6 +26,7 @@ export default function RootLayout({
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          storageKey="k-reddit"
         >
           <ReactQueryProvider>
             <Navbar />

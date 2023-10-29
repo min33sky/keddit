@@ -5,7 +5,7 @@ import { getAuthSession } from '@/lib/auth';
 import UserAccountNav from './UserAccountNav';
 import SearchBar from './SearchBar';
 import ThemeToggle from './theme-toggle';
-import { buttonVariants } from './ui/Button';
+import { buttonVariants } from './ui/button';
 
 export default async function Navbar() {
   const session = await getAuthSession();

@@ -1,6 +1,6 @@
 import { ArrowBigDown, ArrowBigUp, Loader2 } from 'lucide-react';
 import React from 'react';
-import { buttonVariants } from './ui/Button';
+import { buttonVariants } from './ui/button';
 
 export default function PostVoteShell() {
   return (

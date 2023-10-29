@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import type { CommentVote, VoteType } from '@prisma/client';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import React, { useState } from 'react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { useMutation } from '@tanstack/react-query';
 import { CommentVoteRequest } from '@/lib/validators/vote';
 import axios, { AxiosError } from 'axios';

@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react';
 import React from 'react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 
 export default function CloseModalButton() {

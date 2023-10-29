@@ -3,7 +3,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import React, { startTransition } from 'react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { SubscribeToSubredditPayload } from '@/lib/validators/subreddit';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'sonner';

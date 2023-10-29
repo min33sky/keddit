@@ -1,6 +1,6 @@
 import CustomFeed from '@/components/feeds/CustomFeed';
 import GeneralFeed from '@/components/feeds/GeneralFeed';
-import { Button, buttonVariants } from '@/components/ui/Button';
+import { buttonVariants } from '@/components/ui/button';
 import { getAuthSession } from '@/lib/auth';
 import { HomeIcon, NewspaperIcon } from 'lucide-react';
 import Link from 'next/link';
@@ -26,7 +26,7 @@ export default async function Home() {
 
         {/* Subreddit info */}
         <div
-          className="md:sticky md:top-10 overflow-hidden h-fit rounded-lg border border-gray-200
+          className="md:sticky md:top-14 overflow-hidden h-fit rounded-lg border border-gray-200
           order-first md:order-last dark:border-slate-700"
         >
           <div className="bg-emerald-100 dark:bg-slate-800 px-6 py-3">

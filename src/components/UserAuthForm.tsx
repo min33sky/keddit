@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { signIn } from 'next-auth/react';
 import { Icons } from './Icons';
 import { toast } from 'sonner';

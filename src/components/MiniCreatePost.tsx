@@ -4,7 +4,7 @@ import type { Session } from 'next-auth';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 import UserAvatar from './UserAvatar';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { Image as ImageIcon, Link2 } from 'lucide-react';
 import { Input } from './ui/input';
 

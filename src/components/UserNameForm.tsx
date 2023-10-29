@@ -20,7 +20,7 @@ import {
   CardTitle,
 } from './ui/Card';
 import { Label } from './ui/Label';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { Input } from './ui/input';
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {

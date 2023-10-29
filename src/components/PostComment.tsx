@@ -5,7 +5,7 @@ import React, { startTransition, useRef, useState } from 'react';
 import UserAvatar from './UserAvatar';
 import formatDateString from '@/lib/formatDateString';
 import CommentVoteComponent from './CommentVote';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { MessageSquare } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
