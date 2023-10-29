@@ -1,4 +1,4 @@
-import UserNameForm from '@/components/UserNameForm';
+import UserNameForm from '@/components/username-form';
 import { authOptions, getAuthSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import React from 'react';

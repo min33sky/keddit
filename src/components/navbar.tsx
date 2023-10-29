@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { Icons } from './Icons';
 import { getAuthSession } from '@/lib/auth';
-import UserAccountNav from './UserAccountNav';
+import UserAccountButton from './user-account-button';
 import SearchBar from './SearchBar';
 import ThemeToggle from './theme-toggle';
 import { buttonVariants } from './ui/button';
@@ -25,7 +25,7 @@ export default async function Navbar() {
           <ThemeToggle />
 
           {session?.user ? (
-            <UserAccountNav user={session.user} />
+            <UserAccountButton user={session.user} />
           ) : (
             <div className="flex space-x-2 shrink-0">
               <Link

@@ -59,7 +59,7 @@ export default function UserNameForm({
     onError: (err) => {
       if (err instanceof AxiosError) {
         if (err.response?.status === 409) {
-          return toast.error('이미 존재하는 유저네임입니다.');
+          return toast.error('이미 존재하는 사용자 이름입니다.');
         }
       }
 
@@ -67,7 +67,7 @@ export default function UserNameForm({
     },
     onSuccess: () => {
       startTransition(() => {
-        toast.success('유저네임이 변경되었습니다.');
+        toast.success('사용자 이름이 변경되었습니다.');
         router.refresh();
       });
     },
@@ -81,10 +81,8 @@ export default function UserNameForm({
     >
       <Card>
         <CardHeader>
-          <CardTitle>Your username</CardTitle>
-          <CardDescription>
-            Please enter a display name you are comfortable with.
-          </CardDescription>
+          <CardTitle>현재 사용자 이름</CardTitle>
+          <CardDescription>마음에 드는 이름을 입력하세요.</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="relative grid gap-1">
@@ -92,7 +90,7 @@ export default function UserNameForm({
               <span className="text-sm text-zinc-400">u/</span>
             </div>
             <Label className="sr-only" htmlFor="name">
-              Name
+              이름
             </Label>
             <Input
               id="name"
@@ -106,7 +104,9 @@ export default function UserNameForm({
           </div>
         </CardContent>
         <CardFooter>
-          <Button isLoading={isLoading}>Change name</Button>
+          <Button isLoading={isLoading} disabled={isLoading}>
+            이름 변경
+          </Button>
         </CardFooter>
       </Card>
     </form>
